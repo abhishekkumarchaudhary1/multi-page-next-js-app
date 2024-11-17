@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './globals.css';
 
+import { Providers } from './GlobalRedux/provider';
+
 export default function RootLayout({ children }) {
   const pathname = usePathname(); // Get current route
 
@@ -20,8 +22,8 @@ export default function RootLayout({ children }) {
           <header className="fixed top-0 left-0 right-0 h-16 bg-gray-800 text-white flex items-center justify-center shadow-md z-10">
             <nav className="flex space-x-4">
               <Link href="/" className={`p-2 ${isActive('/') ? 'bg-white text-black' : ''}`}>Home</Link>
-              <Link href="/about" className={`p-2 ${isActive('/about') ? 'bg-white text-black' : ''}`}>About</Link>
-              <Link href="/contact" className={`p-2 ${isActive('/contact') ? 'bg-white text-black' : ''}`}>Contact</Link>
+              <Link href="/add-runs" className={`p-2 ${isActive('/about') ? 'bg-white text-black' : ''}`}>Add runs</Link>
+              <Link href="/players-info" className={`p-2 ${isActive('/contact') ? 'bg-white text-black' : ''}`}>Players Info</Link>
               {/* Add more links as needed */}
             </nav>
           </header>
@@ -29,7 +31,9 @@ export default function RootLayout({ children }) {
           {/* Main Content (Outlet) */}
           <main className="flex-grow pt-16 pb-16">
             <div className="container mx-auto px-4">
-              {children}
+              <Providers>
+                {children}
+              </Providers>
             </div>
           </main>
 
